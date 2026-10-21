@@ -1,5 +1,7 @@
 #include "Renderer.h"
 
+#include "RNG.h"
+
 Renderer::Renderer(short width, short height, short fontWidth, short fontHeight)
 {
 	this->width = width;
@@ -91,6 +93,8 @@ void Renderer::HandleInput()
 	{
 		if (ReadConsoleInputW(consolInputHandle, inputBuffer, 128, &eventsRead))
 		{
+			RNG::Waste();
+
 			for (DWORD i = 0; i < eventsRead; i++)
 			{
 				if (inputBuffer[i].EventType == KEY_EVENT)
